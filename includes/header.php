@@ -12,11 +12,13 @@ if (!isset($i18n)) {
         </a>
         <ul class="nav-menu">
             <li><a href="/index.php"><?= __('menu.home') ?></a></li>
+            <li><a href="/estimateur-pro.php">💎 Estimateur Pro</a></li>
             <li><a href="/tarifs.php">Tarifs</a></li>
-            <li><a href="/calculateur-volume.php">Calculateur</a></li>
+            <li><a href="/comparateur-devis.php">Comparateur</a></li>
             <li><a href="/services-specialises.php">Services</a></li>
             <li><a href="/avis-clients.php">Avis</a></li>
             <li><a href="/blog/">Blog</a></li>
+            <li><a href="/faq.php">FAQ</a></li>
             <li><a href="/client/login.php" class="nav-login">Espace Client</a></li>
             <li><a href="/index.php#formulaire-devis" class="nav-cta">Devis Gratuit</a></li>
         </ul>
