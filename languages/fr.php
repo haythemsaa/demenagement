@@ -170,5 +170,30 @@ return [
         'close' => 'Fermer',
         'confirm' => 'Confirmer',
         'actions' => 'Actions'
+    ],
+
+    'volume_calculator' => [
+        'page_title' => 'Calculateur de Volume',
+        'title' => 'Calculateur de Volume Déménagement',
+        'subtitle' => 'Estimez précisément le volume de votre déménagement pièce par pièce',
+        'quick_estimate' => 'Estimation Rapide',
+        'detailed_calculation' => 'Calcul Détaillé',
+        'main_rooms' => 'Pièces Principales',
+        'bedroom' => 'Chambre',
+        'living_room' => 'Salon',
+        'kitchen' => 'Cuisine',
+        'bathroom' => 'Salle de bain',
+        'additional_spaces' => 'Espaces Additionnels',
+        'office' => 'Bureau',
+        'cellar' => 'Cave/Grenier',
+        'garage' => 'Garage',
+        'special_items' => 'Objets Spéciaux',
+        'piano' => 'Piano',
+        'safe' => 'Coffre-fort',
+        'your_estimate' => 'Votre Estimation',
+        'estimated_cost' => 'Coût Estimé',
+        'price_info' => 'Prix indicatif basé sur le volume. Obtenez des devis précis pour comparer.',
+        'get_quotes' => 'Obtenir mes devis',
+        'reset' => 'Réinitialiser'
     ]
 ];
