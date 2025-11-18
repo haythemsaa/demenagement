@@ -1,0 +1,52 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Configuration locale
+config/database.local.php
+config/config.local.php
+
+# Logs
+logs/
+*.log
+
+# Uploads
+uploads/
+*.tmp
+
+# Cache
+cache/
+temp/
+
+# Environnement PHP
+vendor/
+composer.lock
+
+# Variables d'environnement
+.env
+.env.local
+
+# Sessions
+sessions/
+
+# Backups
+backups/
+*.bak
+*.sql.gz
+
+# Fichiers de déploiement
+deploy.sh
+.deployment
+
+# Node modules (si utilisé pour le build front)
+node_modules/
+package-lock.json
+
+# Build
+dist/
+build/

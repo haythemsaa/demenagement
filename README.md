@@ -14,6 +14,11 @@ Site web professionnel de comparaison de devis de déménagement développé en 
 - **FAQ interactive** : Accordion avec les questions fréquentes
 - **Témoignages clients** : Section d'avis et notes
 - **Design responsive** : Compatible mobile, tablette et desktop
+- **Pages légales complètes** : Mentions légales, CGU, Politique de confidentialité
+- **Gestion des cookies RGPD** : Bannière de consentement avec paramètres personnalisables
+- **Pages de confirmation** : Confirmation après soumission de devis
+- **Pages par département** : Pages SEO optimisées par département (exemple: Paris)
+- **Pages d'erreur personnalisées** : 404 et 500 stylisées
 
 ### 🎨 Interface Utilisateur
 
@@ -26,13 +31,17 @@ Site web professionnel de comparaison de devis de déménagement développé en 
 
 ### 💾 Backend PHP
 
-- Architecture MVC propre
-- Base de données MySQL bien structurée
-- API REST pour les formulaires
-- Validation des données côté serveur
-- Protection contre les injections SQL (PDO)
+- Architecture MVC propre avec séparation des responsabilités
+- Base de données MySQL bien structurée avec 7 tables principales
+- API REST pour les formulaires (devis et rappel)
+- Validation complète des données côté serveur
+- Protection contre les injections SQL (PDO avec requêtes préparées)
 - Système de logging des activités
-- Gestion des emails de notification
+- Classe Mailer pour l'envoi d'emails avec templates HTML
+- Helpers PHP (60+ fonctions utilitaires)
+- Configuration centralisée et modulaire
+- Gestion des sessions sécurisée
+- Protection CSRF intégrée
 
 ## 📋 Prérequis
 
@@ -135,17 +144,31 @@ sudo chmod -R 755 /var/www/demenagement
 
 ```
 demenagement/
-├── index.php              # Page d'accueil
-├── styles.css            # Styles CSS
-├── script.js             # JavaScript interactif
-├── database.sql          # Schéma de base de données
-├── .htaccess            # Configuration Apache
-├── README.md            # Ce fichier
+├── index.php                    # Page d'accueil principale
+├── styles.css                   # Styles CSS responsive
+├── script.js                    # JavaScript interactif
+├── database.sql                 # Schéma de base de données MySQL
+├── .htaccess                   # Configuration Apache
+├── .gitignore                  # Fichiers à ignorer par Git
+├── README.md                   # Documentation
+├── 404.php                     # Page d'erreur 404
+├── 500.php                     # Page d'erreur 500
 ├── config/
-│   └── database.php     # Configuration DB
-└── api/
-    ├── submit-quote.php    # API pour les devis
-    └── submit-callback.php # API pour les rappels
+│   ├── database.php            # Configuration base de données
+│   └── config.php              # Configuration générale du site
+├── includes/
+│   ├── helpers.php             # Fonctions utilitaires (60+ helpers)
+│   ├── Mailer.php              # Classe d'envoi d'emails
+│   └── cookie-consent.php      # Bannière de consentement cookies
+├── api/
+│   ├── submit-quote.php        # API pour les demandes de devis
+│   └── submit-callback.php     # API pour les demandes de rappel
+└── pages/
+    ├── mentions-legales.php    # Mentions légales
+    ├── cgu.php                 # Conditions générales d'utilisation
+    ├── politique-confidentialite.php  # Politique de confidentialité
+    ├── confirmation-devis.php  # Page de confirmation
+    └── demenageurs-paris-75.php  # Exemple de page département
 ```
 
 ## 🔐 Sécurité
@@ -153,13 +176,18 @@ demenagement/
 ### Mesures de sécurité implémentées :
 
 - ✅ Protection contre les injections SQL (PDO avec requêtes préparées)
-- ✅ Validation des données côté serveur
-- ✅ Protection CSRF (à activer en production)
-- ✅ En-têtes de sécurité HTTP
-- ✅ Protection des fichiers sensibles (.htaccess)
-- ✅ Hashage des mots de passe (bcrypt)
-- ✅ Limitation des tentatives de connexion
-- ✅ Logging des activités
+- ✅ Validation complète des données côté serveur et client
+- ✅ Protection CSRF avec génération de tokens
+- ✅ En-têtes de sécurité HTTP (XSS, Clickjacking, MIME sniffing)
+- ✅ Protection des fichiers sensibles via .htaccess
+- ✅ Hashage sécurisé des mots de passe (bcrypt)
+- ✅ Gestion sécurisée des sessions
+- ✅ Logging des activités et erreurs
+- ✅ Échappement HTML de toutes les sorties
+- ✅ Validation des emails, téléphones, codes postaux
+- ✅ Limitation des uploads et types de fichiers autorisés
+- ✅ Protection contre les attaques XSS
+- ✅ Conformité RGPD avec gestion des cookies
 
 ### Recommandations pour la production :
 

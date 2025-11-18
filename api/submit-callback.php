@@ -9,6 +9,9 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/../includes/Mailer.php';
 
 // Vérifier que c'est une requête POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -62,8 +65,9 @@ try {
     $stmt->execute($data);
     $rappelId = $db->lastInsertId();
 
-    // Envoyer une notification par email aux administrateurs
-    sendCallbackNotification($data, $rappelId);
+    // Envoyer une notification par email avec la classe Mailer
+    $mailer = new Mailer();
+    $mailer->sendCallbackEmail($data, $rappelId);
 
     // Envoyer un SMS de confirmation si configuré
     // sendSMSConfirmation($data['telephone'], $rappelId);

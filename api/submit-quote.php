@@ -9,6 +9,9 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/helpers.php';
+require_once __DIR__ . '/../includes/Mailer.php';
 
 // Vérifier que c'est une requête POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -135,11 +138,10 @@ try {
     $stmt->execute($params);
     $devisId = $db->lastInsertId();
 
-    // Envoyer un email de notification (à implémenter)
-    sendNotificationEmail($data, $devisId, $estimation);
-
-    // Envoyer un email de confirmation au client
-    sendConfirmationEmail($data, $devisId, $estimation);
+    // Envoyer les emails avec la classe Mailer
+    $mailer = new Mailer();
+    $mailer->sendQuoteEmail($data, $devisId, $estimation);
+    $mailer->sendQuoteNotification($data, $devisId, $estimation);
 
     // Réponse de succès
     echo json_encode([

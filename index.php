@@ -1,3 +1,8 @@
+<?php
+// Chargement des fichiers de configuration
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/helpers.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -712,9 +717,9 @@
                         <li><a href="tel:0978450218">☎ 09 78 45 02 18</a></li>
                         <li>Lun-Dim : 8h-20h</li>
                         <li><a href="mailto:contact@demenageur.com">contact@demenageur.com</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">CGU</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="/pages/mentions-legales.php">Mentions légales</a></li>
+                        <li><a href="/pages/cgu.php">CGU</a></li>
+                        <li><a href="/pages/politique-confidentialite.php">Politique de confidentialité</a></li>
                     </ul>
                 </div>
             </div>
@@ -727,6 +732,9 @@
 
     <!-- Bouton de retour en haut -->
     <button id="backToTop" class="back-to-top" title="Retour en haut">↑</button>
+
+    <!-- Bannière de consentement aux cookies -->
+    <?php include __DIR__ . '/includes/cookie-consent.php'; ?>
 
     <script src="script.js"></script>
 </body>
