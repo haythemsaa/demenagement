@@ -45,6 +45,31 @@ function currentUrl() {
 }
 
 /**
+ * Envoie un email
+ *
+ * @param string $to Email destinataire
+ * @param string $subject Sujet
+ * @param string $message Message (HTML)
+ * @param array $options Options supplémentaires (from, reply_to, etc.)
+ * @return bool
+ */
+function send_email($to, $subject, $message, $options = []) {
+    $from = $options['from'] ?? SITE_NAME . ' <' . SITE_EMAIL . '>';
+    $reply_to = $options['reply_to'] ?? SITE_EMAIL;
+
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-type: text/html; charset=UTF-8',
+        'From: ' . $from,
+        'Reply-To: ' . $reply_to
+    ];
+
+    // En production, utiliser un service comme SendGrid, Mailgun, etc.
+    // Pour l'instant, utiliser mail() natif de PHP
+    return mail($to, $subject, $message, implode("\r\n", $headers));
+}
+
+/**
  * Vérifie si la requête est en POST
  */
 function isPost() {

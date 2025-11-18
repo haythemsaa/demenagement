@@ -19,6 +19,7 @@ if (!isset($i18n)) {
             <li><a href="/avis-clients.php">Avis</a></li>
             <li><a href="/blog/">Blog</a></li>
             <li><a href="/faq.php">FAQ</a></li>
+            <li><a href="/demenageur-pro.php" style="color: #764ba2; font-weight: 600;">👔 Pros</a></li>
             <li><a href="/client/login.php" class="nav-login">Espace Client</a></li>
             <li><a href="/index.php#formulaire-devis" class="nav-cta">Devis Gratuit</a></li>
         </ul>
