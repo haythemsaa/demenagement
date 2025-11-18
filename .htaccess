@@ -1,0 +1,104 @@
+# Configuration Apache pour le site Déménageur.com
+
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Forcer HTTPS (décommenter en production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Rediriger www vers non-www (ou inversement selon votre préférence)
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+# Page d'accueil
+DirectoryIndex index.php index.html
+
+# Protection des fichiers sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protection du fichier de configuration
+<Files "config/database.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protection des fichiers .sql
+<Files "*.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Compression GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Mise en cache des ressources statiques
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # CSS et JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+
+    # Polices
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# En-têtes de sécurité
+<IfModule mod_headers.c>
+    # Protection XSS
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Empêcher le sniffing MIME
+    Header set X-Content-Type-Options "nosniff"
+
+    # Clickjacking protection
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # Référer policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy (à ajuster selon vos besoins)
+    # Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>
+
+# Pages d'erreur personnalisées
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+# Désactiver l'affichage du contenu des répertoires
+Options -Indexes
+
+# Suivre les liens symboliques
+Options +FollowSymLinks
+
+# Charset par défaut
+AddDefaultCharset UTF-8
