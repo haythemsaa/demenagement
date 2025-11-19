@@ -31,9 +31,14 @@
                     <span class="nav-text">Demandes de rappel</span>
                 </a>
 
-                <a href="/admin/movers.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'movers.php' ? 'active' : '' ?>">
+                <a href="/admin/demenageurs.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'demenageurs.php' ? 'active' : '' ?>">
                     <span class="nav-icon">🚚</span>
-                    <span class="nav-text">Déménageurs</span>
+                    <span class="nav-text">Déménageurs Pros</span>
+                </a>
+
+                <a href="/admin/movers.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'movers.php' ? 'active' : '' ?>">
+                    <span class="nav-icon">📦</span>
+                    <span class="nav-text">Partenaires</span>
                 </a>
 
                 <a href="/admin/countries.php" class="nav-item <?= basename($_SERVER['PHP_SELF']) == 'countries.php' ? 'active' : '' ?>">
