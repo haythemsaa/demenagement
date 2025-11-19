@@ -275,8 +275,8 @@ $all_plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if ($is_current): ?>
                         <button class="btn btn-current">Plan actuel</button>
                     <?php else: ?>
-                        <a href="#" class="btn btn-primary" onclick="alert('Intégration Stripe à venir'); return false;">
-                            <?= $plan['price_monthly'] > $subscription['price_monthly'] ? 'Upgrader' : 'Downgrader' ?>
+                        <a href="checkout.php?plan_id=<?= $plan['id'] ?>&mode=monthly" class="btn btn-primary">
+                            <?= $plan['price_monthly'] > $subscription['price_monthly'] ? '⬆️ Upgrader' : '⬇️ Downgrader' ?>
                         </a>
                     <?php endif; ?>
                 </div>
